@@ -14,6 +14,8 @@ var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
 
+  var contactsRouter = require('../mock/contacts-router')
+
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // automatically open browser, if not set will be false
@@ -23,11 +25,14 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+
+
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: true
+  quiet: false
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
@@ -49,7 +54,7 @@ Object.keys(proxyTable).forEach(function (context) {
   }
   app.use(proxyMiddleware(options.filter || context, options))
 })
-
+app.use('/mock/contacts', contactsRouter)
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
@@ -80,6 +85,8 @@ devMiddleware.waitUntilValid(() => {
   }
   _resolve()
 })
+
+
 
 var server = app.listen(port)
 
