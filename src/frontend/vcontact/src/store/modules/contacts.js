@@ -1,6 +1,8 @@
-import * as types from './mutationTypes'
+import axios from 'axios'
+import * as types from '../mutationTypes'
 
-export const state = {
+// initial state
+const state = {
   contactChunks: {
     a: [],
     b: [],
@@ -32,7 +34,26 @@ export const state = {
   contacts: {}
 }
 
-export const mutations = {
+// getters
+const getters = {
+  contactChunks: state => state.contactChunks
+}
+
+// actions
+const actions = {
+  getAllContacts ({ commit }) {
+    axios.get('/contacts/data')
+      .then(response => {
+        commit(types.GETTED_ALL_CONTACTS_SUCCESS, { contacts: response.data })
+      })
+      .catch(error => {
+        commit(types.GETTED_ALL_CONTACTS_FAILED, { errorMsg: error.message })
+      })
+  }
+}
+
+// mutations
+const mutations = {
   [types.GETTED_ALL_CONTACTS_SUCCESS]  (state, { contacts }) {
     for (let i = 0; i < contacts.length; i++) {
       let c = contacts[i]
@@ -40,5 +61,13 @@ export const mutations = {
       state.contacts[c._id] = c
     }
   },
+
   [types.GETTED_ALL_CONTACTS_FAILED]  (state, { errorMsg }) {}
+}
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations
 }

@@ -1,5 +1,5 @@
 <template>
-  <table class='table'>
+  <table class='table' v-if='contacts && contacts.length > 0'>
       <thead>
           <tr>
               <th>{{ contactsChunkName | uppercase }}</th>
@@ -28,7 +28,7 @@
 <script>
 
 export default {
-  name: 'contactsItmesContainer',
+  name: 'contactsItmes',
   props: ['contacts', 'contactsChunkName'],
   data () {
     return {}
