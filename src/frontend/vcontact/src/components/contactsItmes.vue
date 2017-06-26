@@ -16,7 +16,7 @@
                       <div>
                           <button type='button' class='btn btn-info glyphicon glyphicon-pencil'></button>
                           <span> &nbsp;&nbsp;&nbsp;</span>
-                          <button type='button' class='btn btn-danger glyphicon glyphicon-remove'></button>
+                          <button type='button' class='btn btn-danger glyphicon glyphicon-remove'  @click="removeContact(contact)"></button>
                       </div>
                   </div>    
               </td>
@@ -32,6 +32,16 @@ export default {
   props: ['contacts', 'contactsChunkName'],
   data () {
     return {}
+  },
+  methods: {
+    removeContact (contact) {
+      let confirmResult = confirm('delete this contactor?')
+      if (!confirmResult) {
+        return
+      }
+
+      this.$store.dispatch('removeContact', contact)
+    }
   }
 }
 </script>

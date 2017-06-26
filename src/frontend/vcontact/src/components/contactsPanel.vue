@@ -1,19 +1,10 @@
 <template>
   <div class='panel panel-default' style='min-width:500px;box-shadow:4px 4px 10px #888888;'>
     <div class="panel-heading">
-      <button id='btnCreate'>
+      <button id='btnCreate' data-toggle="modal" data-target="#myModal">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
       <span>&nbsp;&nbsp;&nbsp;</span>
-    </div>
-
-    <div class="panel-body">
-      <div style='float: left;width:100%'>
-        <contactsItmes v-for="(contacts, key) in contactChunks" v-bind:contacts="contacts" v-bind:contactsChunkName='key'></contactsItmes>
-
-      <!--       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Launch demo modal
-      </button>
 
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -31,8 +22,12 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
+    </div>
 
+    <div class="panel-body">
+      <div style='float: left;width:100%'>
+        <contactsItmes v-for="(contacts, key) in contactChunks" v-bind:contacts="contacts" v-bind:contactsChunkName='key'></contactsItmes>
       </div>
     </div>
   </div>

@@ -16,6 +16,9 @@ var webpackConfig = process.env.NODE_ENV === 'testing'
 
   var contactsRouter = require('../mock/contacts-router')
 
+  var bodyParser = require('body-parser');
+  var cookieParser = require('cookie-parser');
+
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // automatically open browser, if not set will be false
@@ -26,7 +29,9 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 var compiler = webpack(webpackConfig)
 
