@@ -16,14 +16,14 @@ const getters = {
 const actions = {
   getAllContacts ({ commit }) {
     axios.get('/contacts/data')
-      .then(response => {
-        console.log('getted all contacts success')
-        commit(types.GETTED_ALL_CONTACTS_SUCCESS, { contacts: response.data })
-      })
-      .catch(error => {
-        console.log('getted all contacts success: %s', error.message)
-        commit(types.GETTED_ALL_CONTACTS_FAILED, { errorMsg: error.message })
-      })
+    .then(response => {
+      console.log('getted all contacts success')
+      commit(types.GETTED_ALL_CONTACTS_SUCCESS, { contacts: response.data })
+    })
+    .catch(error => {
+      console.log('getted all contacts success: %s', error.message)
+      commit(types.GETTED_ALL_CONTACTS_FAILED, { errorMsg: error.message })
+    })
   },
   removeContact ({ dispatch, commit }, contact) {
     axios({
@@ -34,14 +34,33 @@ const actions = {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     })
-      .then(response => {
-        console.log('removed contact success: %s', contact._id)
-        dispatch('getAllContacts')
-      })
-      .catch(error => {
-        console.log('removed contact error: %s', error.message)
-        commit(types.REMOVE_CONTACT_FAILED, { errorMsg: error.message })
-      })
+    .then(response => {
+      console.log('removed contact success: %s', contact._id)
+      dispatch('getAllContacts')
+    })
+    .catch(error => {
+      console.log('removed contact error: %s', error.message)
+      commit(types.REMOVE_CONTACT_FAILED, { errorMsg: error.message })
+    })
+  },
+  saveContact ({ dispatch, commit }, task) {
+    axios({
+      url: '/contacts/data',
+      method: 'post',
+      data: { contact: task.data },
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then(response => {
+      console.log('added contact success')
+      dispatch('getAllContacts')
+      task.completed()
+    })
+    .catch(error => {
+      console.log('added contact error: %s', error.message)
+      commit(types.ADD_CONTACT_FAILED, { errorMsg: error.message })
+    })
   }
 }
 

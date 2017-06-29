@@ -5,8 +5,6 @@ self.get = function (req) {
         body: {},
         query: {}
     };
-    console.log('req.body: %s', JSON.stringify(req.body))
-    console.log('req.query: %s', JSON.stringify(req.query))
 
     if (!req) {
         return result;
