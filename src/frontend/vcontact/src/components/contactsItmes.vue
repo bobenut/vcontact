@@ -14,9 +14,9 @@
                   </div>    
                   <div style='float:right'>
                       <div>
-                          <button type='button' class='btn btn-info glyphicon glyphicon-pencil'></button>
-                          <span> &nbsp;&nbsp;&nbsp;</span>
-                          <button type='button' class='btn btn-danger glyphicon glyphicon-remove'  @click="removeContact(contact)"></button>
+                        <slot name="itemModify"></slot>
+                        <span> &nbsp;&nbsp;&nbsp;</span>
+                        <button type='button' class='btn btn-danger glyphicon glyphicon-remove'  @click="removeContact(contact)"></button>
                       </div>
                   </div>    
               </td>
