@@ -43,7 +43,7 @@ const actions = {
       commit(types.REMOVE_CONTACT_FAILED, { errorMsg: error.message })
     })
   },
-  saveContact ({ dispatch, commit }, task) {
+  saveNewContact ({ dispatch, commit }, task) {
     axios({
       url: '/contacts/data',
       method: 'post',
@@ -59,6 +59,25 @@ const actions = {
     })
     .catch(error => {
       console.log('added contact error: %s', error.message)
+      commit(types.ADD_CONTACT_FAILED, { errorMsg: error.message })
+    })
+  },
+  saveModifiedContact ({ dispatch, commit }, task) {
+    axios({
+      url: '/contacts/data',
+      method: 'put',
+      data: { contact: task.data },
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then(response => {
+      console.log('modified contact success')
+      dispatch('getAllContacts')
+      task.completed()
+    })
+    .catch(error => {
+      console.log('modified contact error: %s', error.message)
       commit(types.ADD_CONTACT_FAILED, { errorMsg: error.message })
     })
   }

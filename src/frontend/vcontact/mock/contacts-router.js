@@ -62,4 +62,28 @@ router.post('/data', function(req, res, next) {
   console.log('%s', JSON.stringify(_contacts, null, 2));
 });
 
+router.put('/data', function(req, res, next) {
+  var reqParams = reqParamsGetter.get(req);
+  console.log('start to update contact, params: %s', JSON.stringify(reqParams, null, 2));
+
+  var contact = reqParams.body.contact;
+
+  var findedIndex = -1;
+  for(var i = 0; i < _contacts.length; i++) {
+    if(_contacts[i]._id === contact._id) {
+      findedIndex = i;
+      break;
+    }
+  }
+
+  if(findedIndex >= 0) {
+    _contacts[findedIndex] = contact;
+    console.log('finded&updated: %s', JSON.stringify(contact, null, 2));
+    res.json({result: 'done', data: contact});
+  } else {
+    console.log('not update, not finded');
+    res.json({result: 'failed', err: new Error('can\'t find contact')});
+  }
+});
+
 module.exports = router;

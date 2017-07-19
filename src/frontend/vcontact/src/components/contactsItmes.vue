@@ -8,6 +8,7 @@
       <tbody>
           <tr v-for="(contact, index) in contacts">
               <td style='overflow:hidden'>
+                <div>
                   <div style='float:left'>
                       <div>{{contact.name}}</div>
                       <div>{{contact.mobilePhone}}</div>
@@ -19,6 +20,7 @@
                         <button type='button' class='btn btn-danger glyphicon glyphicon-remove'  @click="removeContact(contact)"></button>
                       </div>
                   </div>    
+                </div>
               </td>
           </tr>
       </tbody>
