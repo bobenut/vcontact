@@ -15,7 +15,7 @@ const getters = {
 // actions
 const actions = {
   getAllContacts ({ commit }) {
-    axios.get('/contacts/data')
+    axios.get('/contact/data')
     .then(response => {
       console.log('getted all contacts success')
       commit(types.GETTED_ALL_CONTACTS_SUCCESS, { contacts: response.data })
@@ -27,7 +27,7 @@ const actions = {
   },
   removeContact ({ dispatch, commit }, contact) {
     axios({
-      url: '/contacts/data',
+      url: '/contact/data',
       method: 'delete',
       data: { contactId: contact._id },
       headers: {
@@ -45,7 +45,7 @@ const actions = {
   },
   saveNewContact ({ dispatch, commit }, task) {
     axios({
-      url: '/contacts/data',
+      url: '/contact/data',
       method: 'post',
       data: { contact: task.data },
       headers: {
@@ -64,7 +64,7 @@ const actions = {
   },
   saveModifiedContact ({ dispatch, commit }, task) {
     axios({
-      url: '/contacts/data',
+      url: '/contact/data',
       method: 'put',
       data: { contact: task.data },
       headers: {
