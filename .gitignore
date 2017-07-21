@@ -1,2 +1,7 @@
 src/frontend/node_modules
+src/frontend/dist/*.*
 src/backend/node_modules
+src/backend/public/*.*
+bin/db/mongo/data/mongod.lock
+bin/db/mongo/data/mongodb.log
+bin/db/mongo/data/mongodb.log.*

@@ -4,7 +4,6 @@ var contactCtrlr = require('../controllers/contactCtrlr.js');
 var reqParamsGetter = require('../utilities/reqParamsGetter.js');
 
 router.get('/data', function (req, res, next) {
-    console.log('************************come in*************************88')
     var reqParams = {
         query: {
             sort: {'nameFirstWordChr': 'asc', 'nameAllWordChr': 'asc'}
