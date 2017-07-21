@@ -1,7 +1,8 @@
 src/frontend/node_modules
 src/frontend/dist/*.*
 src/backend/node_modules
-src/backend/public/*.*
+src/backend/public/*.html
+src/backend/public/static
 bin/db/mongo/data/mongod.lock
 bin/db/mongo/data/mongodb.log
 bin/db/mongo/data/mongodb.log.*
