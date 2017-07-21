@@ -15,7 +15,7 @@ db.on("open",function(){
   console.log("dbopen");
 });
 
-// var routes = require('./routes/index');
+var routes = require('./routes/index');
 var contactRt = require('./routes/contactRt');
 
 
@@ -30,8 +30,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'jade');
 
-// app.use('/', routes);
-app.use('/', express.static(__dirname + "public"));
+app.use('/', routes);
+// app.use('/', express.static(__dirname + "public"));
 app.use('/contact',contactRt);
 
 // catch 404 and forward to error handler
