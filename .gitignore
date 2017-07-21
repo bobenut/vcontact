@@ -1,5 +1,6 @@
 src/frontend/node_modules
-src/frontend/dist/*.*
+src/frontend/dist/*.html
+src/frontend/dist/static
 src/backend/node_modules
 src/backend/public/*.html
 src/backend/public/static

@@ -1,3 +1,3 @@
 # comment
 
-> frontend files be complied in here.
+> frontend files be builded in here.
