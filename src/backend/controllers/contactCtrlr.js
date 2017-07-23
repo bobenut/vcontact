@@ -4,12 +4,12 @@ var contactMdl = require("../models/contactMdl.js");
 var contactCtrlr = {};
 
 contactCtrlr.save = function (reqParams) {
-    var name = reqParams.body.name;
-    var nameFirstWordChr = reqParams.body.nameFirstWordChr;
-    var nameAllWordChr = reqParams.body.nameAllWordChr;
-    var corp = reqParams.body.corp;
-    var mobilePhone = reqParams.body.mobilePhone;
-    var mail = reqParams.body.mail;
+    var name = reqParams.body.contact.name;
+    var nameFirstWordChr = reqParams.body.contact.nameFirstWordChr;
+    var nameAllWordChr = reqParams.body.contact.nameAllWordChr;
+    var corp = reqParams.body.contact.corp;
+    var mobilePhone = reqParams.body.contact.mobilePhone;
+    var mail = reqParams.body.contact.mail;
     var dateNow = new Date();
     var createAt = dateNow;
     var lastModify = dateNow;
@@ -80,12 +80,12 @@ contactCtrlr.updateOne = function (reqParams) {
     };
 
     var value = {
-        name: reqParams.body.name,
-        nameFirstWordChr: reqParams.body.nameFirstWordChr,
-        nameAllWordChr: reqParams.body.nameAllWordChr,
-        corp: reqParams.body.corp,
-        mobilePhone: reqParams.body.mobilePhone,
-        mail: reqParams.body.mail,
+        name: reqParams.body.contact.name,
+        nameFirstWordChr: reqParams.body.contact.nameFirstWordChr,
+        nameAllWordChr: reqParams.body.contact.nameAllWordChr,
+        corp: reqParams.body.contact.corp,
+        mobilePhone: reqParams.body.contact.mobilePhone,
+        mail: reqParams.bod.contacty.mail,
         lastModify: dateNow
     };
 
