@@ -76,7 +76,7 @@ contactCtrlr.removeOne = function (reqParams) {
 contactCtrlr.updateOne = function (reqParams) {
     var dateNow = new Date();
     var filter = {
-        _id: reqParams.body.id
+        _id: reqParams.body.contact._id
     };
 
     var value = {
@@ -85,15 +85,17 @@ contactCtrlr.updateOne = function (reqParams) {
         nameAllWordChr: reqParams.body.contact.nameAllWordChr,
         corp: reqParams.body.contact.corp,
         mobilePhone: reqParams.body.contact.mobilePhone,
-        mail: reqParams.bod.contacty.mail,
+        mail: reqParams.body.contact.mail,
         lastModify: dateNow
     };
 
     return new Promise(function (resolve, reject) {
         contactMdl.updateOne(filter, value).then(function (data) {
+            console.log('update ok')
             resolve({result: 'done', data: data});
         }).catch(function (err) {
-            reject({result: 'failed', err: err});
+            console.log('update err: %s', err.message)            
+            reject({result: 'failed', err: err});;[[]]
         });
     });
 };
