@@ -4,7 +4,9 @@ import * as types from '../mutationTypes'
 // initial state
 const state = {
   contactChunks: {},
-  contacts: {}
+  contacts: {},
+  contactCUDialogIsOpen: false,
+  contactCUDialogOpenCUMode: ''
 }
 
 // getters
@@ -14,6 +16,12 @@ const getters = {
 
 // actions
 const actions = {
+  openContactCUDialog ({ commit }, payload) {
+    commit(types.UI_ACTION_OPEN_CONTACT_CU_DIALOG, payload)
+  },
+  closeContactCUDialog ({ commit }, payload) {
+    commit(types.UI_ACTION_CLOSE_CONTACT_CU_DIALOG, payload)
+  },
   getAllContacts ({ commit }) {
     axios.get('/contact/data')
     .then(response => {
@@ -54,15 +62,15 @@ const actions = {
     })
     .then(response => {
       console.log('added contact success')
+      task.success()
       dispatch('getAllContacts')
-      task.completed()
     })
     .catch(error => {
       console.log('added contact error: %s', error.message)
       commit(types.ADD_CONTACT_FAILED, { errorMsg: error.message })
     })
   },
-  saveModifiedContact ({ dispatch, commit }, task) {
+  saveUpdatedContact ({ dispatch, commit }, task) {
     axios({
       url: '/contact/data',
       method: 'put',
@@ -73,8 +81,8 @@ const actions = {
     })
     .then(response => {
       console.log('modified contact success')
+      task.success()
       dispatch('getAllContacts')
-      task.completed()
     })
     .catch(error => {
       console.log('modified contact error: %s', error.message)
@@ -124,7 +132,16 @@ const mutations = {
 
   [types.GETTED_ALL_CONTACTS_FAILED]  (state, { errorMsg }) {},
 
-  [types.REMOVE_CONTACT_FAILED]  (state, { errorMsg }) {}
+  [types.REMOVE_CONTACT_FAILED]  (state, { errorMsg }) {},
+
+  [types.UI_ACTION_OPEN_CONTACT_CU_DIALOG]  (state, { cuMode }) {
+    state.contactCUDialogIsOpen = true
+    state.contactCUDialogOpenCUMode = cuMode
+  },
+  [types.UI_ACTION_CLOSE_CONTACT_CU_DIALOG]  (state, { cuMode }) {
+    state.contactCUDialogIsOpen = false
+    state.contactCUDialogOpenCUMode = cuMode
+  }
 }
 
 export default {
