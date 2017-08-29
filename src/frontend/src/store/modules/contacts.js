@@ -6,7 +6,8 @@ const state = {
   contactChunks: {},
   contacts: {},
   contactCUDialogIsOpen: false,
-  contactCUDialogOpenCUMode: ''
+  contactCUDialogOpenCUMode: '',
+  contactCUDialogData: {}
 }
 
 // getters
@@ -134,9 +135,10 @@ const mutations = {
 
   [types.REMOVE_CONTACT_FAILED]  (state, { errorMsg }) {},
 
-  [types.UI_ACTION_OPEN_CONTACT_CU_DIALOG]  (state, { cuMode }) {
+  [types.UI_ACTION_OPEN_CONTACT_CU_DIALOG]  (state, { cuMode, contact }) {
     state.contactCUDialogIsOpen = true
     state.contactCUDialogOpenCUMode = cuMode
+    state.contactCUDialogData = contact
   },
   [types.UI_ACTION_CLOSE_CONTACT_CU_DIALOG]  (state, { cuMode }) {
     state.contactCUDialogIsOpen = false

@@ -90,6 +90,7 @@ export default {
       dialogIsOpen: false,
       dialogOpenCUMode: '',
       contact: {
+        _id: '',
         name: '',
         nameFirstWordChr: '',
         nameAllWordChr: '',
@@ -145,6 +146,7 @@ export default {
       this.dialogIsOpen = state.contacts.contactCUDialogIsOpen
       this.dialogOpenCUMode = state.contacts.contactCUDialogOpenCUMode
 
+      this.contact._id = state.contacts.contactCUDialogData ? state.contacts.contactCUDialogData._id || '' : ''
       this.contact.name = state.contacts.contactCUDialogData ? state.contacts.contactCUDialogData.name || '' : ''
       this.contact.nameFirstWordChr = state.contacts.contactCUDialogData ? state.contacts.contactCUDialogData.nameFirstWordChr || '' : ''
       this.contact.nameAllWordChr = state.contacts.contactCUDialogData ? state.contacts.contactCUDialogData.nameAllWordChr || '' : ''

@@ -7,7 +7,7 @@
       </div>    
       <div style='float:right'>
           <div>
-          <button type='button' class='btn btn-info glyphicon glyphicon-pencil'></button>
+          <button type='button' class='btn btn-info glyphicon glyphicon-pencil' @click="openContactCUDialogWithUpdating(contact)"></button>
           <span> &nbsp;&nbsp;&nbsp;</span>
           <button type='button' class='btn btn-danger glyphicon glyphicon-remove'  @click="removeContact(contact)"></button>
           </div>
@@ -25,6 +25,9 @@ export default {
     return {}
   },
   methods: {
+    openContactCUDialogWithUpdating (contact) {
+      this.$store.dispatch('openContactCUDialog', {cuMode: 'update', contact: this.contact})
+    },
     removeContact (contact) {
       let confirmResult = confirm('delete this contactor?')
       if (!confirmResult) {

@@ -34,11 +34,6 @@ export default {
   methods: {
     openContactCUDialogWithCreation () {
       this.$store.dispatch('openContactCUDialog', {cuMode: 'create', contact: {}})
-    },
-    openContactCUDialogWithUpdating (contact) {
-      // console.log(JSON.stringify(contact))
-      // this.$data.modificationConatct = Object.assign({}, contact)
-      // this.showModificationContactDialog = true
     }
   },
   created () {
