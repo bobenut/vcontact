@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import contactsPanel from '@/components/contactsPanel'
 import Hello from '@/components/Hello'
-
+  
 describe('contactsPanel.vue', () => {
   it('click new button', () => {
     const Constructor = Vue.extend(contactsPanel)
