@@ -4,6 +4,5 @@ src/frontend/dist/static
 src/backend/node_modules
 src/backend/public/*.html
 src/backend/public/static
-bin/db/mongo/data/mongod.lock
-bin/db/mongo/data/mongodb.log
-bin/db/mongo/data/mongodb.log.*
+bin/win/db/mongo/data
+bin/win/app
